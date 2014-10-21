@@ -8,6 +8,13 @@
 
 #import "InputTableViewController.h"
 #import "LoanObject.h"
+#import "LandCell.h"
+#import "LoanCell.h"
+#import "LandObject.h"
+
+#define LandCellHeight 132
+#define LoanCellHeight 125
+#define CalculateCellHeight 44
 
 
 #define LandPriceCellIdentifer @"LandPriceCellIdentifer"
@@ -20,11 +27,12 @@
 
 @implementation InputTableViewController
 
+@synthesize landObject;
+@synthesize loanObject;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LoanObject instance].fundLoanAmount=120;
-    [[LoanObject instance] saveUserDefaults];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,8 +49,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+
     return 1;
 }
 
@@ -56,13 +63,14 @@
     UITableViewCell*cell=nil;
 
     if (indexPath.row==0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:LandPriceCellIdentifer forIndexPath:indexPath];
-        return cell;
+        
+        return [self landCell];
+        
         
     }
     if (indexPath.row==1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:InterestCellIdentifer forIndexPath:indexPath];
-        return cell;
+        return [self loanCell];
+       
         
     }
     if (indexPath.row==2) {
@@ -75,6 +83,19 @@
     // Configure the cell...
     
     return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (0==indexPath.row) {
+        return LandCellHeight;
+    }
+    if (1==indexPath.row) {
+        return LoanCellHeight;
+    }
+    if (2==indexPath.row) {
+        return CalculateCellHeight;
+    }
+    return 0;
 }
 
 
@@ -121,5 +142,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma private messages
+
+-(UITableViewCell*)landCell{
+    LandCell*cell = (LandCell*)[self.tableView dequeueReusableCellWithIdentifier:LandPriceCellIdentifer];
+    cell.selfHouseLabel.text=[NSString stringWithFormat:@"自住房单价%.1f 每平方米",self.landObject.selfHousePrice];
+    
+    return cell;
+    
+}
+-(UITableViewCell*)loanCell{
+   LoanCell* cell = (LoanCell*)[self.tableView dequeueReusableCellWithIdentifier:InterestCellIdentifer];
+    cell.fundLabel.text=[NSString stringWithFormat:@"公积金贷款额度%.0f万 贷款利率 %.4f %%",self.loanObject.fundLoanAmount,self.loanObject.fundInterest];
+    
+    return cell;
+}
+
+-(NSString*)landPriceText{
+    
+    return nil;
+}
+-(NSString*)interestText{
+    return [[LoanObject instance] description];
+;
+}
 
 @end

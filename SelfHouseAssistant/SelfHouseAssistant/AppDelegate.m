@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "LoanObject.h"
+#import "LandObject.h"
+#import "InputTableViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController*navi=(UINavigationController*)self.window.rootViewController;
+    InputTableViewController*itvc=(InputTableViewController*)[navi.viewControllers objectAtIndex:0];
+    itvc.loanObject=[LoanObject instance];
+    LandObject*landObj=[[LandObject alloc]init];
+    [landObj synchronizeFromUserDefaults];
+    itvc.landObject=landObj;
+    
     return YES;
 }
 

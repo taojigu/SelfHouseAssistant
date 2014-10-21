@@ -14,6 +14,9 @@
 
 @implementation LandPriceViewController
 
+@synthesize delegate;
+@synthesize landObject;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -33,5 +36,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

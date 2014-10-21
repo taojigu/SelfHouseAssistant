@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LandPriceViewController : UIViewController
+
+@class LandPriceViewController;
+@class LandObject;
+
+@protocol LandPriceViewControllerDelegate <NSObject>
+
+@required
+-(void)viewControllerNavigateBack:(LandPriceViewController*)lvc;
 
 @end
+
+
+
+@interface LandPriceViewController : UIViewController{
+    
+}
+@property(nonatomic,assign)id<LandPriceViewControllerDelegate>delegate;
+@property(nonatomic,strong)LandObject*landObject;
+
+@end
+

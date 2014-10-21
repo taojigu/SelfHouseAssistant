@@ -6,13 +6,15 @@
 //  Copyright (c) 2014年 voole. All rights reserved.
 //
 
-#import "InterestViewController.h"
+#import "LoanViewController.h"
 
-@interface InterestViewController ()
+@interface LoanViewController ()
 
 @end
 
-@implementation InterestViewController
+@implementation LoanViewController
+
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

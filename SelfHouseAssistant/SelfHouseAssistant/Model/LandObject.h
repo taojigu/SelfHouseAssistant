@@ -12,7 +12,11 @@
     
 }
 
-@property(nonatomic,assign)float price;
+@property(nonatomic,assign)float selfHousePrice;
+@property(nonatomic,assign)float commercialHousePrice;
 @property(nonatomic,assign)float area;
+
+-(void)saveUserDefaults;
+-(void)synchronizeFromUserDefaults;
 
 @end

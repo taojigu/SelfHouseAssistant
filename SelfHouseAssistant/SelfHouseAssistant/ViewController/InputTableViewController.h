@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InputTableViewController : UITableViewController
+@class LandObject;
+@class LoanObject;
+
+@interface InputTableViewController : UITableViewController{
+    
+}
+
+@property(nonatomic,strong)LoanObject*loanObject;
+@property(nonatomic,strong)LandObject*landObject;
+
+
 
 @end

@@ -61,7 +61,7 @@ static LoanObject*instanceLoadObject=nil;
     self.bankLoanAmount=[stand floatForKey:BankLoanAmountKey];
     self.bankInterest=[stand floatForKey:BankInterestKey];
     self.cycleYear=[stand integerForKey:CyclyeYeasKey];
-    self.remimbusermentStyle=[stand integerForKey:ReimbusermentStyleKey];
+    self.remimbusermentStyle=(ReimbursementStyle)[stand integerForKey:ReimbusermentStyleKey];
 }
 
 /*
@@ -71,6 +71,27 @@ static LoanObject*instanceLoadObject=nil;
 - (id)initWithCoder:(NSCoder *)aDecoder{
     
 }*/
+-(NSString*)description{
+    if (0==self.fundLoanAmount&&0==self.bankLoanAmount&&0==self.cycleYear) {
+        return @"无贷款信息";
+    }
+    NSMutableString*desp=[[NSMutableString alloc]init];
+    if (0!=self.fundLoanAmount) {
+        [desp appendFormat:@"公积金贷款 %.0f万 利率 %.4f",self.fundLoanAmount,self.fundInterest];
+    }
+    if (0!=self.bankLoanAmount) {
+        [desp appendFormat:@"商业贷款 %.0f万 利率 %.4f",self.bankLoanAmount,self.bankInterest];
+    }
+    if (0!=self.cycleYear) {
+        [desp appendFormat:@"贷款年限 %d 年",self.cycleYear];
+    }
+    
+    //[desp appendFormat:@""];
+    
+
+    
+    return desp;
+}
 
 
 
