@@ -14,7 +14,7 @@
 @synthesize bankLabel;
 @synthesize interestLabel;
 
-
+ 
 - (void)awakeFromNib {
     // Initialization code
 }

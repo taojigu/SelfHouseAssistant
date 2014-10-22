@@ -15,7 +15,7 @@
 @protocol LandPriceViewControllerDelegate <NSObject>
 
 @required
--(void)viewControllerNavigateBack:(LandPriceViewController*)lvc;
+-(void)landViewControllerDidNavigateBack:(LandPriceViewController*)lvc;
 
 @end
 

@@ -15,6 +15,8 @@ typedef enum {
     ReimbursementStyleEAPEM=1//等额本息 ，Equal Amount of Payment Each Month
 } ReimbursementStyle;
 
+NSString* NSStringFromReimbusermentStyle(ReimbursementStyle reimbusermentStyle);
+
 @interface LoanObject : NSObject{
 }
 
@@ -28,8 +30,6 @@ typedef enum {
 
 +(LoanObject*)instance;
 -(void)saveUserDefaults;
-
-
 
 
 @end

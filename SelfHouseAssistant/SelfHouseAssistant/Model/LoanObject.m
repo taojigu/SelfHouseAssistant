@@ -10,6 +10,17 @@
 
 
 
+NSString* NSStringFromReimbusermentStyle(ReimbursementStyle reimbusermentStyle){
+    if (ReimbursementStyleEAPEM==reimbusermentStyle) {
+        return @"等额本息";
+    }
+    if (ReimbursementStyleMMR==reimbusermentStyle) {
+        return @"等额本金";
+    }
+    
+    return nil;
+}
+
 static LoanObject*instanceLoadObject=nil;
 
 #define FundInterestKey @"FundInterestKey"
@@ -48,7 +59,7 @@ static LoanObject*instanceLoadObject=nil;
 -(void)saveUserDefaults{
     NSUserDefaults*stand=[NSUserDefaults standardUserDefaults];
     [stand setFloat:self.fundInterest forKey:FundInterestKey];
-    [stand setFloat:self.fundLoanAmount  forKey:FundInterestKey];
+    [stand setFloat:self.fundLoanAmount  forKey:FundLoanAmountKey];
     [stand setFloat:self.bankInterest forKey:BankInterestKey];
     [stand setFloat:self.bankLoanAmount forKey:BankLoanAmountKey];
     [stand setInteger:self.cycleYear forKey:CyclyeYeasKey];
@@ -83,7 +94,7 @@ static LoanObject*instanceLoadObject=nil;
         [desp appendFormat:@"商业贷款 %.0f万 利率 %.4f",self.bankLoanAmount,self.bankInterest];
     }
     if (0!=self.cycleYear) {
-        [desp appendFormat:@"贷款年限 %d 年",self.cycleYear];
+        [desp appendFormat:@"贷款年限 %ld 年",(long)self.cycleYear];
     }
     
     //[desp appendFormat:@""];
@@ -92,7 +103,6 @@ static LoanObject*instanceLoadObject=nil;
     
     return desp;
 }
-
 
 
 

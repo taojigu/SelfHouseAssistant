@@ -11,6 +11,8 @@
 #import "LandCell.h"
 #import "LoanCell.h"
 #import "LandObject.h"
+#import "LandPriceViewController.h"
+#import "LoanViewController.h"
 
 #define LandCellHeight 132
 #define LoanCellHeight 125
@@ -21,7 +23,7 @@
 #define InterestCellIdentifer @"InterestCellIdentifer"
 #define CalculateCellIdentifer @"CalculateCellIdentifer"
 
-@interface InputTableViewController ()
+@interface InputTableViewController ()<LandPriceViewControllerDelegate,LoanViewControllerDelegate>
 
 @end
 
@@ -133,21 +135,48 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController*dstvc=[segue destinationViewController];
+    if ([dstvc isKindOfClass:[LandPriceViewController class]]) {
+        LandPriceViewController*lpvc=(LandPriceViewController*)dstvc;
+        lpvc.delegate=self;
+        lpvc.landObject=self.landObject;
+        return;
+    }
+    if ([dstvc isKindOfClass:[LoanViewController class]]) {
+        LoanViewController*lvc=(LoanViewController*)dstvc;
+        lvc.loanObject=self.loanObject;
+        lvc.delegate=self;
+        return;
+    }
 }
-*/
 
-#pragma private messages
+#pragma mark -- action and delegate messages
+
+-(void)loanViewControllerDidNavigateBack:(LoanViewController *)lvc{
+    [self.tableView reloadData];
+    
+}
+-(void)landViewControllerDidNavigateBack:(LandPriceViewController *)lvc{
+    [self.tableView reloadData];
+}
+
+
+
+#pragma mark -- private messages
 
 -(UITableViewCell*)landCell{
     LandCell*cell = (LandCell*)[self.tableView dequeueReusableCellWithIdentifier:LandPriceCellIdentifer];
-    cell.selfHouseLabel.text=[NSString stringWithFormat:@"自住房单价%.1f 每平方米",self.landObject.selfHousePrice];
+    cell.selfHouseLabel.text=[NSString stringWithFormat:@"自住房单价%.0f 每平方米",self.landObject.selfHousePrice];
+    cell.commercialHouseLabel.text=[NSString stringWithFormat:@"商品房单价%.0f 每平方米",self.landObject.commercialHousePrice];
+    cell.areaLabel.text=[NSString stringWithFormat:@"住房面积为%.2f平方米",self.landObject.area];
+    
     
     return cell;
     
@@ -155,6 +184,8 @@
 -(UITableViewCell*)loanCell{
    LoanCell* cell = (LoanCell*)[self.tableView dequeueReusableCellWithIdentifier:InterestCellIdentifer];
     cell.fundLabel.text=[NSString stringWithFormat:@"公积金贷款额度%.0f万 贷款利率 %.4f %%",self.loanObject.fundLoanAmount,self.loanObject.fundInterest];
+    cell.bankLabel.text=[NSString stringWithFormat:@"商贷额度为%.0f万，贷款利率%.4f%%",self.loanObject.bankLoanAmount,self.loanObject.bankInterest];
+    cell.interestLabel.text=[NSString stringWithFormat:@"贷款年限为%ld年，贷款方式为%@",(long)self.loanObject.cycleYear,NSStringFromReimbusermentStyle(self.loanObject.remimbusermentStyle)];
     
     return cell;
 }

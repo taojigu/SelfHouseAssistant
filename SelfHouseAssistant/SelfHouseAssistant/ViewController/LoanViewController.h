@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class LoanViewController;
+@class LoanObject;
 
 @protocol LoanViewControllerDelegate <NSObject>
 
-@required
 
--(void)loanViewControllerFinished:(LoanViewController*)lvc;
+-(void)loanViewControllerDidNavigateBack:(LoanViewController*)lvc;
+
 
 @end
 
@@ -23,5 +24,6 @@
 }
 
 @property(nonatomic,assign)id<LoanViewControllerDelegate>delegate;
+@property(nonatomic,strong)LoanObject*loanObject;
 
 @end
