@@ -13,6 +13,7 @@
 #import "LandObject.h"
 #import "LandPriceViewController.h"
 #import "LoanViewController.h"
+#import "Calculator.h"
 
 #define LandCellHeight 132
 #define LoanCellHeight 125
@@ -23,7 +24,10 @@
 #define InterestCellIdentifer @"InterestCellIdentifer"
 #define CalculateCellIdentifer @"CalculateCellIdentifer"
 
-@interface InputTableViewController ()<LandPriceViewControllerDelegate,LoanViewControllerDelegate>
+#define ResultFormat @"经过对比计算，如果将来房价控制在%.1f内，自住房的收益较高，否则商品房的收益较高"
+#define ErrorMessage @"输入参数有误，请从先检查"
+
+@interface InputTableViewController ()<LandPriceViewControllerDelegate,LoanViewControllerDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -135,6 +139,24 @@
 }
 */
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(2==indexPath.row){
+        
+        if([[UIDevice currentDevice].systemVersion floatValue]>=8.0){
+            
+            [self presentAltertControleller];
+        }
+        else{
+            [self presentAlertView];
+        }
+        
+    }
+    
+}
+
 
 #pragma mark - Navigation
 
@@ -167,6 +189,11 @@
     [self.tableView reloadData];
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        return;
+    }
+}
 
 
 #pragma mark -- private messages
@@ -188,6 +215,54 @@
     cell.interestLabel.text=[NSString stringWithFormat:@"贷款年限为%ld年，贷款方式为%@",(long)self.loanObject.cycleYear,NSStringFromReimbusermentStyle(self.loanObject.remimbusermentStyle)];
     
     return cell;
+}
+
+-(void)presentAltertControleller{
+    Calculator*cal=[[Calculator alloc]initWithLandObject:self.landObject loanObject:self.loanObject];
+    
+    float price=[cal critcalPrice];
+    UIAlertController*alert=nil;
+    if (InvalidateFloat==price) {
+        
+        alert=[UIAlertController alertControllerWithTitle:@"结果" message:ErrorMessage preferredStyle:UIAlertControllerStyleAlert];
+    }
+    else{
+        
+        NSString*resultMessage=[NSString stringWithFormat:ResultFormat,price];
+        alert=[UIAlertController alertControllerWithTitle:@"结果" message:resultMessage preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction*detailAction=[UIAlertAction actionWithTitle:@"详细信息" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+            return ;
+        }];
+        [alert addAction:detailAction];
+    }
+
+    UIAlertAction*okActon=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:okActon];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void)presentAlertView{
+    Calculator*cal=[[Calculator alloc]initWithLandObject:self.landObject loanObject:self.loanObject];
+    
+    float price=[cal critcalPrice];
+    UIAlertView*alertView=nil;
+    if (InvalidateFloat==price) {
+        alertView=[[UIAlertView alloc]initWithTitle:@"结果" message:ErrorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+    else{
+    
+    NSString*resultMessage=[NSString stringWithFormat:ResultFormat,price];
+    alertView=[[UIAlertView alloc]initWithTitle:@"结果" message:resultMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"详细信息",nil];
+        [alertView show];
+    }
+    
 }
 
 -(NSString*)landPriceText{

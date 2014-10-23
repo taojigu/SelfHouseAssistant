@@ -15,7 +15,7 @@
     IBOutlet UITextField*tfFundInterest;
     IBOutlet UITextField*tfBankAmount;
     IBOutlet UITextField*tfBankInterest;
-    IBOutlet UISlider*sliderYear;
+    //IBOutlet UISlider*sliderYear;
     IBOutlet UILabel*labelYear;
     IBOutlet UISegmentedControl*segmentReimbuserStyle;
     IBOutlet UIPickerView*pickerYear;
@@ -56,17 +56,11 @@
     if ([self.delegate respondsToSelector:@selector(loanViewControllerDidNavigateBack:)]) {
         [self.delegate loanViewControllerDidNavigateBack:self];
     }
+    [self.loanObject saveUserDefaults];
     [self resignAllInputViews];
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)sliderYearValueChanged{
-    if (self.loanObject.cycleYear==sliderYear.value) {
-        return;
-    }
-    self.loanObject.cycleYear=sliderYear.value;
-    labelYear.text=[NSString stringWithFormat:@"%ld年",(long)self.loanObject.cycleYear];
-    [self.loanObject saveUserDefaults];
-}
+
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField==tfFundAmount) {
         self.loanObject.fundLoanAmount=tfFundAmount.text.floatValue;
@@ -96,13 +90,11 @@
     return [NSString stringWithFormat:@"%ld",(long)row];
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    if (row==sliderYear.value) {
-        return;
-    }
+    
     self.loanObject.cycleYear=row;
     labelYear.text=[NSString stringWithFormat:@"%ld年",(long)self.loanObject.cycleYear];
     [self.loanObject saveUserDefaults];
-    sliderYear.value=row;
+    //sliderYear.value=row;
     
 }
 #pragma private messages
@@ -111,7 +103,7 @@
     tfBankInterest.text=[NSString stringWithFormat:@"%.4f",self.loanObject.bankInterest];
     tfFundAmount.text=[NSString stringWithFormat:@"%.0f",self.loanObject.fundLoanAmount];
     tfFundInterest.text=[NSString stringWithFormat:@"%.4f",self.loanObject.fundInterest];
-    sliderYear.value=self.loanObject.cycleYear;
+    //sliderYear.value=self.loanObject.cycleYear;
     labelYear.text=[NSString stringWithFormat:@"%ld年",(long)self.loanObject.cycleYear];
 
     
@@ -123,7 +115,7 @@
     [tfBankAmount resignFirstResponder];
 }
 -(void)initSubViews{
-    [sliderYear addTarget:self action:@selector(sliderYearValueChanged) forControlEvents:UIControlEventValueChanged];
+    //[sliderYear addTarget:self action:@selector(sliderYearValueChanged) forControlEvents:UIControlEventValueChanged];
     
     UITapGestureRecognizer*tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnView)];
     [self.view addGestureRecognizer:tapGesture];

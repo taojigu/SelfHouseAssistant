@@ -236,7 +236,7 @@
             </objects>
             <point key="canvasLocation" x="493" y="660"/>
         </scene>
-        <!--Input Table View Controller-->
+        <!--自住房参谋-->
         <scene sceneID="oCL-Te-IEU">
             <objects>
                 <tableViewController id="VGf-B6-LOM" customClass="InputTableViewController" sceneMemberID="viewController">
@@ -355,7 +355,7 @@
                             <outlet property="delegate" destination="VGf-B6-LOM" id="VXF-Xx-ty1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="C8q-wi-LBT"/>
+                    <navigationItem key="navigationItem" title="自住房参谋" id="C8q-wi-LBT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdd-Bu-hu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

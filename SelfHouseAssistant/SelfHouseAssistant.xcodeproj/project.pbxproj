@@ -21,6 +21,7 @@
 		9DB5C29119F53AE2008DEAFA /* LandObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C29019F53AE2008DEAFA /* LandObject.m */; };
 		9DB5C29419F678EF008DEAFA /* LoanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C29319F678EF008DEAFA /* LoanCell.m */; };
 		9DB5C29919F67D41008DEAFA /* LandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C29819F67D41008DEAFA /* LandCell.m */; };
+		9DB5C30E19F8E390008DEAFA /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C30D19F8E390008DEAFA /* Calculator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		9DB5C29319F678EF008DEAFA /* LoanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoanCell.m; path = SelfHouseAssistant/View/Cell/LoanCell.m; sourceTree = "<group>"; };
 		9DB5C29719F67D41008DEAFA /* LandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandCell.h; path = SelfHouseAssistant/View/Cell/LandCell.h; sourceTree = "<group>"; };
 		9DB5C29819F67D41008DEAFA /* LandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandCell.m; path = SelfHouseAssistant/View/Cell/LandCell.m; sourceTree = "<group>"; };
+		9DB5C30C19F8E390008DEAFA /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Calculator.h; path = SelfHouseAssistant/Model/Calculator.h; sourceTree = "<group>"; };
+		9DB5C30D19F8E390008DEAFA /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Calculator.m; path = SelfHouseAssistant/Model/Calculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				9DB5C28D19F53AC6008DEAFA /* LoanObject.m */,
 				9DB5C28F19F53AE2008DEAFA /* LandObject.h */,
 				9DB5C29019F53AE2008DEAFA /* LandObject.m */,
+				9DB5C30C19F8E390008DEAFA /* Calculator.h */,
+				9DB5C30D19F8E390008DEAFA /* Calculator.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				9DB5C29419F678EF008DEAFA /* LoanCell.m in Sources */,
 				9DB5C26319F50F81008DEAFA /* ViewController.m in Sources */,
 				9DB5C28E19F53AC6008DEAFA /* LoanObject.m in Sources */,
+				9DB5C30E19F8E390008DEAFA /* Calculator.m in Sources */,
 				9DB5C29119F53AE2008DEAFA /* LandObject.m in Sources */,
 				9DB5C26019F50F81008DEAFA /* AppDelegate.m in Sources */,
 				9DB5C25D19F50F81008DEAFA /* main.m in Sources */,
@@ -488,6 +494,7 @@
 				9DB5C27C19F50F81008DEAFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DB5C27D19F50F81008DEAFA /* Build configuration list for PBXNativeTarget "SelfHouseAssistantTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +503,7 @@
 				9DB5C27F19F50F81008DEAFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
