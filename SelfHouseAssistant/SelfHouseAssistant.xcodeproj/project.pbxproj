@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DB211CD1A0337CC002D041E /* NSMutableString+Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB211CC1A0337CC002D041E /* NSMutableString+Line.m */; };
 		9DB5C25D19F50F81008DEAFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C25C19F50F81008DEAFA /* main.m */; };
 		9DB5C26019F50F81008DEAFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C25F19F50F81008DEAFA /* AppDelegate.m */; };
 		9DB5C26319F50F81008DEAFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C26219F50F81008DEAFA /* ViewController.m */; };
@@ -22,6 +23,7 @@
 		9DB5C29419F678EF008DEAFA /* LoanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C29319F678EF008DEAFA /* LoanCell.m */; };
 		9DB5C29919F67D41008DEAFA /* LandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C29819F67D41008DEAFA /* LandCell.m */; };
 		9DB5C30E19F8E390008DEAFA /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C30D19F8E390008DEAFA /* Calculator.m */; };
+		9DB5C34619F9E694008DEAFA /* CalculateDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB5C34519F9E693008DEAFA /* CalculateDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9DB211CB1A0337CC002D041E /* NSMutableString+Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+Line.h"; path = "SelfHouseAssistant/Utility/Extension/NSMutableString+Line.h"; sourceTree = "<group>"; };
+		9DB211CC1A0337CC002D041E /* NSMutableString+Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+Line.m"; path = "SelfHouseAssistant/Utility/Extension/NSMutableString+Line.m"; sourceTree = "<group>"; };
 		9DB5C25719F50F81008DEAFA /* SelfHouseAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfHouseAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DB5C25B19F50F81008DEAFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DB5C25C19F50F81008DEAFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		9DB5C29819F67D41008DEAFA /* LandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LandCell.m; path = SelfHouseAssistant/View/Cell/LandCell.m; sourceTree = "<group>"; };
 		9DB5C30C19F8E390008DEAFA /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Calculator.h; path = SelfHouseAssistant/Model/Calculator.h; sourceTree = "<group>"; };
 		9DB5C30D19F8E390008DEAFA /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Calculator.m; path = SelfHouseAssistant/Model/Calculator.m; sourceTree = "<group>"; };
+		9DB5C34419F9E693008DEAFA /* CalculateDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalculateDetailViewController.h; path = SelfHouseAssistant/ViewController/CalculateDetailViewController.h; sourceTree = "<group>"; };
+		9DB5C34519F9E693008DEAFA /* CalculateDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalculateDetailViewController.m; path = SelfHouseAssistant/ViewController/CalculateDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +90,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9DB211C91A033742002D041E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9DB211CA1A033778002D041E /* Extenstion */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		9DB211CA1A033778002D041E /* Extenstion */ = {
+			isa = PBXGroup;
+			children = (
+				9DB211CB1A0337CC002D041E /* NSMutableString+Line.h */,
+				9DB211CC1A0337CC002D041E /* NSMutableString+Line.m */,
+			);
+			name = Extenstion;
+			sourceTree = "<group>";
+		};
 		9DB5C24E19F50F81008DEAFA = {
 			isa = PBXGroup;
 			children = (
+				9DB211C91A033742002D041E /* Utility */,
 				9DB5C29519F678F4008DEAFA /* UIView */,
 				9DB5C28A19F53A4E008DEAFA /* Model */,
 				9DB5C28019F51934008DEAFA /* ViewController */,
@@ -155,6 +179,8 @@
 				9DB5C28519F52FDA008DEAFA /* LandPriceViewController.m */,
 				9DB5C28719F539E3008DEAFA /* LoanViewController.h */,
 				9DB5C28819F539E3008DEAFA /* LoanViewController.m */,
+				9DB5C34419F9E693008DEAFA /* CalculateDetailViewController.h */,
+				9DB5C34519F9E693008DEAFA /* CalculateDetailViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -300,7 +326,9 @@
 				9DB5C28E19F53AC6008DEAFA /* LoanObject.m in Sources */,
 				9DB5C30E19F8E390008DEAFA /* Calculator.m in Sources */,
 				9DB5C29119F53AE2008DEAFA /* LandObject.m in Sources */,
+				9DB211CD1A0337CC002D041E /* NSMutableString+Line.m in Sources */,
 				9DB5C26019F50F81008DEAFA /* AppDelegate.m in Sources */,
+				9DB5C34619F9E694008DEAFA /* CalculateDetailViewController.m in Sources */,
 				9DB5C25D19F50F81008DEAFA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

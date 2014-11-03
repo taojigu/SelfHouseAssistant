@@ -29,6 +29,7 @@ static LoanObject*instanceLoadObject=nil;
 #define BankLoanAmountKey @"BankLoanABankLoanAmountKeymount"
 #define CyclyeYeasKey @"CyclyeYeasKey"
 #define ReimbusermentStyleKey @"ReimbusermentStyleKey"
+#define DownPaymentRationKey @"DownPaymentRationKey"
 
 @implementation LoanObject{
     
@@ -39,7 +40,9 @@ static LoanObject*instanceLoadObject=nil;
 @synthesize bankInterest;
 @synthesize bankLoanAmount;
 @synthesize cycleYear;
-@synthesize remimbusermentStyle;
+@synthesize reimbusermentStyle;
+@synthesize downPaymentRatio;
+
 
 
 +(LoanObject*)instance{
@@ -63,7 +66,8 @@ static LoanObject*instanceLoadObject=nil;
     [stand setFloat:self.bankInterest forKey:BankInterestKey];
     [stand setFloat:self.bankLoanAmount forKey:BankLoanAmountKey];
     [stand setInteger:self.cycleYear forKey:CyclyeYeasKey];
-    [stand setInteger:self.remimbusermentStyle forKey:ReimbusermentStyleKey];
+    [stand setInteger:self.reimbusermentStyle forKey:ReimbusermentStyleKey];
+    [stand setFloat:self.downPaymentRatio forKey:DownPaymentRationKey];
 }
 -(void)synchronizeFromUserDefaults{
     NSUserDefaults*stand=[NSUserDefaults standardUserDefaults];
@@ -72,7 +76,8 @@ static LoanObject*instanceLoadObject=nil;
     self.bankLoanAmount=[stand floatForKey:BankLoanAmountKey];
     self.bankInterest=[stand floatForKey:BankInterestKey];
     self.cycleYear=[stand integerForKey:CyclyeYeasKey];
-    self.remimbusermentStyle=(ReimbursementStyle)[stand integerForKey:ReimbusermentStyleKey];
+    self.reimbusermentStyle=(ReimbursementStyle)[stand integerForKey:ReimbusermentStyleKey];
+    self.downPaymentRatio=[stand floatForKey:DownPaymentRationKey];
 }
 
 /*

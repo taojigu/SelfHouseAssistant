@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LoanObject.h"
 @class LandObject;
-@class LoanObject;
+
 
 
 static const float InvalidateFloat=0-MAXFLOAT;
@@ -30,5 +31,7 @@ static const float InvalidateFloat=0-MAXFLOAT;
 -(float)totalInterestEAPEM:(float)principle monthRate:(float)monthRate debtMonth:(NSInteger)debtMonth;
 //等额本金
 -(float)totalInterestMMR:(float)principle monthRate:(float)monthRate debtMonth:(NSInteger)debtMonth;
+
+-(float)totalInterest:(float)principle monthRate:(float)monthRate debtMonth:(NSInteger)debtMonth reimbuserStyle:(ReimbursementStyle)reimbuserStyle;
 
 @end

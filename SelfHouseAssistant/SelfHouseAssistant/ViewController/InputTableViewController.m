@@ -14,6 +14,7 @@
 #import "LandPriceViewController.h"
 #import "LoanViewController.h"
 #import "Calculator.h"
+#import "CalculateDetailViewController.h"
 
 #define LandCellHeight 132
 #define LoanCellHeight 125
@@ -191,6 +192,13 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
+        UIStoryboard*storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        NSString*className=NSStringFromClass([CalculateDetailViewController class]);
+        CalculateDetailViewController*cdvc=[storyboard instantiateViewControllerWithIdentifier:className];
+        cdvc.landObject=self.landObject;
+        cdvc.loanObject=self.loanObject;
+        cdvc.calculator=[[Calculator alloc]initWithLandObject:self.landObject loanObject:self.loanObject];
+        [self.navigationController pushViewController:cdvc animated:YES];
         return;
     }
 }
@@ -210,9 +218,9 @@
 }
 -(UITableViewCell*)loanCell{
    LoanCell* cell = (LoanCell*)[self.tableView dequeueReusableCellWithIdentifier:InterestCellIdentifer];
-    cell.fundLabel.text=[NSString stringWithFormat:@"公积金贷款额度%.0f万 贷款利率 %.4f %%",self.loanObject.fundLoanAmount,self.loanObject.fundInterest];
-    cell.bankLabel.text=[NSString stringWithFormat:@"商贷额度为%.0f万，贷款利率%.4f%%",self.loanObject.bankLoanAmount,self.loanObject.bankInterest];
-    cell.interestLabel.text=[NSString stringWithFormat:@"贷款年限为%ld年，贷款方式为%@",(long)self.loanObject.cycleYear,NSStringFromReimbusermentStyle(self.loanObject.remimbusermentStyle)];
+    cell.fundLabel.text=[NSString stringWithFormat:@"公积金默认%d%%首付 贷款利率 %.3f%%",30,self.loanObject.fundInterest];
+    cell.bankLabel.text=[NSString stringWithFormat:@"商贷默认%d%%首付 贷款利率%.3f%%",30,self.loanObject.bankInterest];
+    cell.interestLabel.text=[NSString stringWithFormat:@"贷款年限为%ld年，贷款方式为%@",(long)self.loanObject.cycleYear,NSStringFromReimbusermentStyle(self.loanObject.reimbusermentStyle)];
     
     return cell;
 }
@@ -231,7 +239,18 @@
         NSString*resultMessage=[NSString stringWithFormat:ResultFormat,price];
         alert=[UIAlertController alertControllerWithTitle:@"结果" message:resultMessage preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction*detailAction=[UIAlertAction actionWithTitle:@"详细信息" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [alert dismissViewControllerAnimated:YES completion:nil];
+            [alert dismissViewControllerAnimated:YES completion:^{
+            
+                UIStoryboard*storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                NSString*className=NSStringFromClass([CalculateDetailViewController class]);
+                CalculateDetailViewController*cdvc=[storyboard instantiateViewControllerWithIdentifier:className];
+                cdvc.calculator=cal;
+                cdvc.loanObject=self.loanObject;
+                cdvc.landObject=self.landObject;
+                [self showViewController:cdvc sender:self];
+                return;
+                
+            }];
             return ;
         }];
         [alert addAction:detailAction];

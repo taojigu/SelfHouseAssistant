@@ -97,6 +97,11 @@
     //sliderYear.value=row;
     
 }
+-(IBAction)reimburseStyleSegmentControlValueChanged:(id)sender{
+    UISegmentedControl*segctrl=(UISegmentedControl*)sender;
+    self.loanObject.reimbusermentStyle=(ReimbursementStyle)segctrl.selectedSegmentIndex;
+    [self.loanObject saveUserDefaults];
+}
 #pragma private messages
 -(void)refreshValueSubViews{
     tfBankAmount.text=[NSString stringWithFormat:@"%.0f",self.loanObject.bankLoanAmount];
@@ -105,6 +110,8 @@
     tfFundInterest.text=[NSString stringWithFormat:@"%.4f",self.loanObject.fundInterest];
     //sliderYear.value=self.loanObject.cycleYear;
     labelYear.text=[NSString stringWithFormat:@"%ld年",(long)self.loanObject.cycleYear];
+    
+    segmentReimbuserStyle.selectedSegmentIndex=(NSInteger)self.loanObject.reimbusermentStyle;
 
     
 }

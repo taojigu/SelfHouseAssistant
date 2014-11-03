@@ -11,8 +11,8 @@
 static  NSString* const LoanObjectKey=@"LoanObjectKey";
 
 typedef enum {
-    ReimbursementStyleMMR=0,//等额本金，Matching monthly repayment
-    ReimbursementStyleEAPEM=1//等额本息 ，Equal Amount of Payment Each Month
+    ReimbursementStyleMMR=1,//等额本金，Matching monthly repayment
+    ReimbursementStyleEAPEM=0//等额本息 ，Equal Amount of Payment Each Month
 } ReimbursementStyle;
 
 NSString* NSStringFromReimbusermentStyle(ReimbursementStyle reimbusermentStyle);
@@ -24,8 +24,9 @@ NSString* NSStringFromReimbusermentStyle(ReimbursementStyle reimbusermentStyle);
 @property(nonatomic,assign)float fundLoanAmount;
 @property(nonatomic,assign)float bankInterest;
 @property(nonatomic,assign)float bankLoanAmount;
+@property(nonatomic,assign)float downPaymentRatio;
 @property(nonatomic,assign)NSInteger cycleYear;
-@property(nonatomic,assign)ReimbursementStyle remimbusermentStyle;
+@property(nonatomic,assign)ReimbursementStyle reimbusermentStyle;
 
 
 +(LoanObject*)instance;
